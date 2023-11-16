@@ -1,0 +1,83 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: none;
+    font-family: sans-serif;
+}
+.todo-app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(181, 181, 181);
+    min-height: 100vh;
+    min-width: 100vw;
+}
+.todo-app-wrapper {
+    min-width: 400px; 
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.todo-app-heading {
+    color: white;
+    font-size: 50px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+}
+
+.todo-app-form, .todo-app-items {
+    background: white;
+    width: 100%;
+    min-height: 40px;
+    border-radius: 10px;
+    padding: 20px;
+}
+.todo-app-form-heading {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.todo-app-form-content {
+    display: flex;
+    width: 100%;
+}
+
+.todo-app-form-content input {
+    flex: 1;
+    height: 40px;
+    padding-inline: 20px;
+}
+.todo-app-form-content button {
+    padding-inline: 20px; 
+}
+
+.todo-app-items {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.todo-app-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #dedede;
+    margin-bottom: 10px;
+    padding-bottom: 15px;
+    padding-inline-start: 10px;
+}
+.todo-app-item-heading {
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 18px;
+}
+
+.todo-app-item-actions {
+    display: flex;
+    gap: 10px;
+}
+.todo-app-item-actions button {
+    padding-inline: 10px;
+}
