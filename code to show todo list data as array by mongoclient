@@ -1,0 +1,59 @@
+const express = require('express');
+const MongoClient = require('mongodb').MongoClient;
+
+const app = express();
+const port = 5000;
+
+const url = 'mongodb+srv://vishalkamboj331:9896887877vk@cluster0.rk13u4c.mongodb.net/?retryWrites=true&w=majority'; // Replace with your MongoDB Atlas connection string
+
+app.get('/', async (req, res) => {
+    const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+    try {
+        const adminDb = client.db('todoliatDB');
+        const databases = await adminDb.admin().listDatabases();
+        
+        res.json(databases);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('Internal Server Error');
+    } finally {
+      client.close();
+  }
+});
+
+app.get('/db', async (req, res) => {
+  try {
+    const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+    const db = client.db('todolistDB'); // Replace with your database name
+    const collections = await db.listCollections().toArray();
+
+    res.json(collections);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  } finally {
+    client.close();
+  }
+});
+
+app.get('/data', async (req, res) => {
+    const client = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+    try {
+      const db = client.db("todolistDB");
+      
+      const collection = db.collection('todos'); // Update with your collection name
+  
+      const data = await collection.find({}).toArray();
+      res.json(data);
+    } catch (error) {
+      console.error('Error:', error);
+      res.status(500).send('Internal Server Error');
+    } finally {
+      client.close(); // Close the connection after fetching data
+    }
+  });
+  
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
